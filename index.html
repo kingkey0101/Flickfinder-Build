@@ -18,37 +18,46 @@
 <body>
     <header>
         <h1>🎬 Flickfinder 🍿</h1>
-        <div class="search-bar">
-            <form id="search-form">
-                <input type="text" id="search-input" placeholder="Search movies or TV shows...">
+        <div class="search__bar">
+            <form id="search__form">
+                <input type="text" id="search__input" placeholder="Search movies or TV shows...">
                 <button type="submit">Search</button>
             </form>
         </div>
     </header>
-
+    <div class="modal__hidden" id="movie__modal">
+        <div class="modal__content">
+            <span id="close__modal" class="close">&times;</span>
+            <div id="modal__details"></div>
+        </div>
+    </div>
     <main>
         <section class="hero">
-            <h1>Discover What's Trending</h1>
+            <h1>Discover Your Next Favorite</h1>
             <p>Explore the hottest movies and TV shows right now.</p>
         </section>
 
         <section class="trending" id="trendingSection">
             <h2>Trending Now</h2>
-            <div class="movie-grid" id="movieGrid">
+            <div class="movie__grid" id="movieGrid">
                 <!--movie cards inserted here-->
-                <div class="movie-card">
+                <div class="movie__card">
 
                 </div>
             </div>
         </section>
     </main>
-
+    <div class="spinner__hidden" id="loading__spinner">
+        <div class="loader"></div>
+    </div>
+    <script src="config.js"></script>
     <script src="script.js"></script>
+
 </body>
 
 <footer>
     <p> &copy; Flickfinder. Built with 💻 & 🍿 </p>
-    <div class="social-links">
+    <div class="social__links">
         <a href="https://github.com/kingkey0101" target="_blank" aria-label="GitHub">
             <i class="fab fa-github"></i>
         </a>
