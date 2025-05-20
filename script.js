@@ -1,6 +1,10 @@
 const movieGrid = document.getElementById("movieGrid");
 const searchForm = document.getElementById("search__form");
 const searchInput = document.getElementById("search__input");
+const MOVIES_PER_PAGE = 8;
+let allMovies = [];
+let currentIndex = 0;
+const showMoreBtn = document.getElementById("showMoreBtn");
 
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
@@ -16,7 +20,7 @@ async function fetchTrendingMovies() {
     const data = await response.json();
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    displayMovies(data.results);
+    displayMovies(data.results, true);
   } catch (error) {
     console.error("Error fetching trending movies:", error);
   } finally {
@@ -27,10 +31,18 @@ async function fetchTrendingMovies() {
 // display movie cards
 //clears olld grid, loops through movies, creates new card, adds poster, title, date and rating
 //adds card to grid
-function displayMovies(movies) {
-  movieGrid.innerHTML = "";
+function displayMovies(movies, reset = true) {
+  if (reset) {
+    movieGrid.innerHTML = "";
+    currentIndex = 0;
+    allMovies = movies;
+  }
+  const nextMovies = allMovies.slice(
+    currentIndex,
+    currentIndex + MOVIES_PER_PAGE
+  );
 
-  movies.forEach((movie) => {
+  nextMovies.forEach((movie) => {
     const card = document.createElement("div");
     card.classList.add("movie__card");
     card.innerHTML = `<img src="${
@@ -45,6 +57,12 @@ function displayMovies(movies) {
 
     movieGrid.appendChild(card);
   });
+  currentIndex += MOVIES_PER_PAGE;
+  if (currentIndex < allMovies.length) {
+    showMoreBtn.classList.remove("hidden");
+  } else {
+    showMoreBtn.classList.add("hidden");
+  }
 }
 
 //movie details
@@ -57,7 +75,7 @@ async function fetchMovieDetails(movieId) {
     );
     const movie = await response.json();
 
-    await new Promise(resolve => setTimeout(resolve, 300))
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     spinner.classList.add("hidden");
     // console.log("movie details", movie);
@@ -86,7 +104,7 @@ searchForm.addEventListener("submit", async (event) => {
           )}`
         );
         const data = await response.json();
-        displayMovies(data.results);
+        displayMovies(data.results, true);
       }
     } catch (error) {
       console.error("Error searching movies:", error);
@@ -96,14 +114,17 @@ searchForm.addEventListener("submit", async (event) => {
   }, 295);
 });
 
+// show more button
+showMoreBtn.addEventListener("click", () => {
+  displayMovies(allMovies, false);
+});
+
 // trending
 //runs on page load to auto show trending movies on load
 document.addEventListener("DOMContentLoaded", fetchTrendingMovies);
 
 //spinner
 const spinner = document.getElementById("spinner");
-// spinner.classList.remove("hidden");
-// spinner.classList.add("hidden");
 
 // movie modal
 
@@ -131,15 +152,14 @@ function showMovieModal(movie) {
   closeModal.addEventListener("click", () => {
     modal.classList.add("hidden");
   });
-
 }
 
-document.getElementById('close__modal').addEventListener('click', () => {
-    document.getElementById('movie__modal').classList.add('hidden');
+document.getElementById("close__modal").addEventListener("click", () => {
+  document.getElementById("movie__modal").classList.add("hidden");
 });
 
 window.addEventListener("click", (e) => {
-    const modal = document.getElementById('movie__modal');
+  const modal = document.getElementById("movie__modal");
   if (e.target === modal) {
     modal.classList.add("hidden");
   }

@@ -17,8 +17,9 @@
 
 <body>
 
-    <header>
-        <h1>🎬 Flickfinder 🍿</h1>
+    <header id="header__background">
+        <h1 class="logo">🎬Flickfinder🍿</h1>
+        <img src="./assets/Flickfinder Logo.png" class="logo__img" alt="logo">
         <div class="search__bar">
             <form id="search__form">
                 <input type="text" id="search__input" placeholder="Search movies or TV shows...">
@@ -47,10 +48,12 @@
             <div class="movie__grid" id="movieGrid">
                 <!--movie cards inserted here-->
                 <div class="movie__card">
-
                 </div>
             </div>
         </section>
+        <div class="show__more__container">
+            <button class="movie__btn" id="showMoreBtn">Browse More</button>
+        </div>
     </main>
 
     <script src="config.js"></script>

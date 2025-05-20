@@ -1,13 +1,13 @@
 /* reset and base styles */
 
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Orbitron', sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
 }
 
-body{
+body {
     background-color: #0d0d0d;
     color: #ffffff;
     line-height: 1.6;
@@ -16,9 +16,11 @@ body{
 
 /* header */
 
-header{
+header {
     background-color: #111;
-    padding: 16px 32px;
+    padding: 32px 48px;
+    margin-top: 20px;
+    margin-bottom: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,19 +29,36 @@ header{
 
 }
 
-.logo{
+
+.logo {
     font-size: 32px;
     font-weight: bold;
     color: #00fff7;
     text-shadow: 0 0 10px #00fff7;
+    margin-top: 50px;
+    margin-left: 12px;
 }
 
-.search__bar{
+.logo__img {
+    height: 100px;
+    width: auto;
+    max-width: 500px;
+    margin-right: 24px;
+    object-fit: contain;
+    display: block;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.search__bar {
     display: flex;
     align-items: center;
+    margin-top: 55px;
+
 }
 
-.search__bar input{
+.search__bar input {
     padding: 12px;
     border: none;
     border-radius: 50px 0 0 50px;
@@ -47,7 +66,7 @@ header{
     font-size: 16px;
 }
 
-.search__bar button{
+.search__bar button {
     padding: 8px 16px;
     border: none;
     background: #00fff7;
@@ -58,33 +77,65 @@ header{
     transition: background 300ms ease;
 }
 
-.search__bar button:hover{
+.show__more__container{
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+
+}
+
+#showMoreBtn {
+    padding: 8px 16px;
+    border: none;
+    background: #00fff7;
+    color: #000;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 300ms ease;
+
+}
+
+#showMoreBtn:hover {
+    background: #00c1b1;
+
+}
+
+.movie__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.search__bar button:hover {
     background: #00c1b1;
 }
 
 /* hero section */
 
-.hero{
+.hero {
     text-align: center;
     padding: 48px 32px;
     background: linear-gradient(to right, #0f0f0f, #1c1c1c);
 }
 
-.hero h1{
+
+.hero h1 {
     font-size: 40px;
     color: #00fff7;
     margin-bottom: 16px;
     text-shadow: 0 0 10px #00fff7;
 }
 
-.hero p{
+.hero p {
     font-size: 20px;
     color: #aaa;
 }
 
 /* trending movies */
 
-.trending h2{
+.trending h2 {
     font-size: 44px;
     margin-bottom: 16px;
     color: #00fff7;
@@ -94,7 +145,7 @@ header{
 
 }
 
-.movies__container{
+.movies__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 20px;
@@ -102,7 +153,7 @@ header{
 
 /* loading state */
 
-.spinner{
+.spinner {
     position: fixed;
     top: 0;
     left: 0;
@@ -114,11 +165,11 @@ header{
     transition: opacity 300ms ease;
     z-index: 10005;
     background-color: rgba(0, 0, 0, 0.95);
-    
+
 }
 
 
-.loader{
+.loader {
     border: 8px solid #222;
     border-top: 8px solid #00fff7;
     border-radius: 50%;
@@ -143,6 +194,7 @@ header{
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -150,7 +202,7 @@ header{
 
 /* modal */
 
-.modal{
+.modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -164,7 +216,7 @@ header{
     transition: opacity 300ms ease;
 }
 
-.modal__content{
+.modal__content {
     background: #111;
     padding: 32px;
     border-radius: 12px;
@@ -175,7 +227,8 @@ header{
     box-shadow: 0 0 30px #0fff;
     animation: fadeIn 300ms ease-in-out;
 }
-.close{
+
+.close {
     position: absolute;
     top: 12px;
     right: 20px;
@@ -185,12 +238,12 @@ header{
     transition: transform 200ms ease;
 }
 
-.close:hover{
+.close:hover {
     transform: scale(1.2);
     color: #fff;
 }
 
-#close__modal{
+#close__modal {
     position: absolute;
     top: 10px;
     right: 20px;
@@ -198,9 +251,15 @@ header{
     cursor: pointer;
 }
 
-@keyframes fadeIn{
-    0%{ opacity:0; transform: translateY(-20px) scale(0.98);}
-    100% { opacity: 1; transform: translateY(0) scale(1);
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -208,7 +267,7 @@ header{
 
 /* movie card */
 
-.movie__card{
+.movie__card {
     background-color: #1a1a1a;
     border-radius: 16px;
     padding: 16px;
@@ -221,17 +280,17 @@ header{
     transition: transform 300ms ease;
 }
 
-.movie__card:hover{
+.movie__card:hover {
     transform: scale(1.05);
 }
 
-.movie__card img{
+.movie__card img {
     width: 100%;
     height: auto;
-    border-radius:12px;
+    border-radius: 12px;
 }
 
-.movie__card h3{
+.movie__card h3 {
     margin-top: 8px;
     font-size: 16px;
 }
@@ -247,22 +306,22 @@ header{
 /* responsive */
 
 @media(max-width:768px) {
-    .search__bar input{
+    .search__bar input {
         width: 140px;
     }
 
-    .hero h1{
+    .hero h1 {
         font-size: 32px;
     }
 
-    .movies__container{
+    .movies__container {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
 }
 
 /* footer */
 
-footer{
+footer {
     background: rgba(20, 20, 30, 0.95);
     color: #ffffffcc;
     text-align: center;
@@ -276,7 +335,7 @@ footer{
     animation: fadeInFooter 1.5s ease forwards;
 }
 
-footer p{
+footer p {
     margin: 0;
     letter-spacing: 1px;
     color: #00ffffc7;
@@ -284,7 +343,7 @@ footer p{
 
 /* social links */
 
-.social__links{
+.social__links {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -292,7 +351,7 @@ footer p{
 
 }
 
-.social__links a{
+.social__links a {
     text-decoration: none;
     margin: 0 8px;
     color: #00ffffc0;
@@ -304,30 +363,39 @@ footer p{
     text-shadow: 0 0 5px #00ffff;
 }
 
-.social__links a:hover{
+.social__links a:hover {
     transform: scale(1.2);
     color: #0ff;
     text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
 }
 
-@keyframes fadeInFooter{
+@keyframes fadeInFooter {
     from {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-@meida(max-width: 600px) {
-    footer{
+@media(max-width: 600px) {
+    footer {
         font-size: 12.8px;
         paddiing: 16px;
     }
 
-    .social__links a{
+    header{
+        padding: 24px 12px;
+    }
+    #header__background{
+        height: 80px;
+        padding: 0 12px;
+    }
+
+    .social__links a {
         font-size: 20px;
     }
 }
