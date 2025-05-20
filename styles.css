@@ -16,45 +16,62 @@ body {
 
 /* header */
 
+#header__background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 header {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
     background-color: #111;
     padding: 32px 48px;
     margin-top: 20px;
     margin-bottom: 100px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    text-align: center;
     align-items: center;
     border-bottom: 2px solid #00fff7;
     text-shadow: 0 0 10px #00fff7;
 
 }
 
+header h1,
+.search__bar {
+    z-index: 1;
+
+}
+
 
 .logo {
-    font-size: 32px;
+    font-size: 60px;
     font-weight: bold;
     color: #00fff7;
     text-shadow: 0 0 10px #00fff7;
-    margin-top: 50px;
-    margin-left: 12px;
+    margin: 0 0 16px 0;
+    padding-bottom: 100px;
 }
 
 .logo__img {
-    height: 100px;
+    height: 250px;
+    padding: 20px 16px;
+    
     width: auto;
-    max-width: 500px;
-    margin-right: 24px;
-    object-fit: contain;
-    display: block;
-    justify-content: center;
-    align-items: center;
+    flex-shrink: 1;
+    /* opacity: 0.6; */
 
 }
 
 .search__bar {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-top: 55px;
+    margin: 0;
+    padding-bottom: 36px;
 
 }
 
@@ -67,7 +84,7 @@ header {
 }
 
 .search__bar button {
-    padding: 8px 16px;
+    padding: 12px 14px;
     border: none;
     background: #00fff7;
     color: #000;
@@ -77,7 +94,7 @@ header {
     transition: background 300ms ease;
 }
 
-.show__more__container{
+.show__more__container {
     display: flex;
     justify-content: center;
     margin: 24px 0;
@@ -319,6 +336,44 @@ header {
     }
 }
 
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 24px 8px;
+    }
+
+    .logo__img {
+        margin: 0 0 16px 0;
+        height: 72px;
+    }
+
+    .header__center {
+        width: 100%;
+    }
+}
+
+
+@media(max-width: 600px) {
+    footer {
+        font-size: 12.8px;
+        paddiing: 16px;
+    }
+
+    header {
+        padding: 24px 12px;
+    }
+
+    #header__background {
+        height: 80px;
+        padding: 0 12px;
+    }
+
+    .social__links a {
+        font-size: 20px;
+    }
+}
+
 /* footer */
 
 footer {
@@ -378,24 +433,5 @@ footer p {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@media(max-width: 600px) {
-    footer {
-        font-size: 12.8px;
-        paddiing: 16px;
-    }
-
-    header{
-        padding: 24px 12px;
-    }
-    #header__background{
-        height: 80px;
-        padding: 0 12px;
-    }
-
-    .social__links a {
-        font-size: 20px;
     }
 }
