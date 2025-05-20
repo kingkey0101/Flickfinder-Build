@@ -43,9 +43,6 @@ function displayMovies(movies) {
       fetchMovieDetails(movie.id);
     });
 
-    card.addEventListener('click', () => {
-        showMovieModal(movie)
-    })
     movieGrid.appendChild(card);
   });
 }
@@ -60,8 +57,10 @@ async function fetchMovieDetails(movieId) {
     );
     const movie = await response.json();
 
+    await new Promise(resolve => setTimeout(resolve, 300))
+
     spinner.classList.add("hidden");
-    console.log("movie details", movie);
+    // console.log("movie details", movie);
     showMovieModal(movie);
   } catch (error) {
     console.error("failed to fetch more movie details:", error);
@@ -76,18 +75,25 @@ searchForm.addEventListener("submit", async (event) => {
   spinner.classList.remove("hidden");
 
   event.preventDefault();
-  const query = searchInput.value.trim();
-  if (query) {
-    const response = await fetch(
-      `${BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
-        query
-      )}`
-    );
+  setTimeout(async () => {
+    const query = searchInput.value.trim();
 
-    const data = await response.json();
-    displayMovies(data.results);
-    spinner.classList.add("hidden");
-  }
+    try {
+      if (query) {
+        const response = await fetch(
+          `${BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+            query
+          )}`
+        );
+        const data = await response.json();
+        displayMovies(data.results);
+      }
+    } catch (error) {
+      console.error("Error searching movies:", error);
+    } finally {
+      spinner.classList.add("hidden");
+    }
+  }, 295);
 });
 
 // trending
@@ -95,17 +101,17 @@ searchForm.addEventListener("submit", async (event) => {
 document.addEventListener("DOMContentLoaded", fetchTrendingMovies);
 
 //spinner
-const spinner = document.getElementById("loading__spinner");
-spinner.classList.remove("hidden");
-spinner.classList.add("hidden");
+const spinner = document.getElementById("spinner");
+// spinner.classList.remove("hidden");
+// spinner.classList.add("hidden");
 
 // movie modal
 
 function showMovieModal(movie) {
-    if (!movie || !movie.title){
-        console.warn('Invalid movie data for modal:', movie);
-        return;
-    }
+  if (!movie || !movie.title) {
+    console.warn("Invalid movie data for modal:", movie);
+    return;
+  }
   const modal = document.getElementById("movie__modal");
   const modalDetails = document.getElementById("modal__details");
   const closeModal = document.getElementById("close__modal");
@@ -117,19 +123,25 @@ function showMovieModal(movie) {
 
   modal.classList.remove("hidden");
 
-  closeModal.onclick = () => modal.classList.add('hidden');
-  window.onclick = (e) => {
-    if (e.target === modal) modal.classList.add('hidden')
-  }
+  //   closeModal.onclick = () => modal.classList.add('hidden');
+  //   window.onclick = (e) => {
+  //     if (e.target === modal) modal.classList.add('')
+  //   }
 
-//   closeModal.addEventListener('click', () => {
-//     modal.classList.add('hidden');
-//   })
+  closeModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
 
-//  window.addEventListener('click', (e) => {
-//     if (e.target === modal) {
-//         modal.classList.add('hidden');
-//     }
-//  })
-  console.log("modal works");
 }
+
+document.getElementById('close__modal').addEventListener('click', () => {
+    document.getElementById('movie__modal').classList.add('hidden');
+});
+
+window.addEventListener("click", (e) => {
+    const modal = document.getElementById('movie__modal');
+  if (e.target === modal) {
+    modal.classList.add("hidden");
+  }
+});
+console.log("modal works");
