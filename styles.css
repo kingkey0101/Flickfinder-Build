@@ -40,6 +40,14 @@ header {
 
 }
 
+ .header__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 54px;
+ }
+
 header h1,
 .search__bar {
     z-index: 1;
@@ -425,21 +433,25 @@ footer p {
     }
 
     .search__bar {
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
         padding-bottom: 12px;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
     }
 
     .search__bar input {
-        width: 90vw;
+        width: 70vw;
         font-size: 16px;
-        margin-bottom: 8px;
+        margin-bottom: 0;
     }
 
     .search__bar button {
-        width: 100%;
+        width: auto;
         font-size: 16px;
-        margin-bottom: 8px;
+        margin-bottom: 0;
+        padding: 8px 14px;
     }
 
     .movie__grid {
