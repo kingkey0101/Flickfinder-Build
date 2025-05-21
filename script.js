@@ -2,9 +2,10 @@ const movieGrid = document.getElementById("movieGrid");
 const searchForm = document.getElementById("search__form");
 const searchInput = document.getElementById("search__input");
 const MOVIES_PER_PAGE = 6;
+const showMoreBtn = document.getElementById("showMoreBtn");
+const API_URL = 'https://api.themoviedb.org/3/trending/movie/week?api_key=${TMBD_API_KEY}'
 let allMovies = [];
 let currentIndex = 0;
-const showMoreBtn = document.getElementById("showMoreBtn");
 
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
