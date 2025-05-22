@@ -476,7 +476,7 @@ footer p {
 @media(max-width: 600px) {
     footer {
         font-size: 12.8px;
-        paddiing: 16px;
+        padding: 16px;
     }
 
     header {
